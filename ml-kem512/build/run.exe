@@ -1,3 +1,0 @@
-cmake ..
-cmake --build .
-./ml_kem_512_keygen.exe

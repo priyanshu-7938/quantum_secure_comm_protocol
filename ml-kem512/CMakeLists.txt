@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 project(ML_KEM_512 C)
-
+   
 set(CMAKE_C_STANDARD 11)
 
 # Add include directories
@@ -17,7 +17,8 @@ set(SOURCES
     internal/PRG/prg.c
     internal/k_pke/k_pke.c
     internal/k_pke/k_pke_utils.c
-
+    internal/utils/utils.c
+    
     external/Compact_FIPS202.c
 )
 

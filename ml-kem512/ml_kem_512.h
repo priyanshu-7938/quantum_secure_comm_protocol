@@ -34,7 +34,9 @@ void ml_kem_512_keygen_internal(uint8_t* d, uint8_t* z, uint8_t* pubKey, uint8_t
 
 // Encapsulates a key and computes a cipher text and shared secret. 
 // Returns 1 on success, 0 if the public key is malformed.
-int ml_kem_512_encapsulate(const uint8_t* m, const uint8_t* pubkey, uint8_t* cipher, uint8_t* shared_secret);
+int ml_kem_512_encapsulate(const uint8_t* pubkey, uint8_t* cipher, uint8_t* shared_secret);
+int ml_kem_512_encapsulate_internal(uint8_t* m, const uint8_t* pubkey, uint8_t* cipher, uint8_t* shared_secret);
+
 
 // Decapsulates a cipher text and computes the shared secret.
 void ml_kem_512_decapsulate(const uint8_t* seckey, const uint8_t* cipher, uint8_t* shared_secret);

@@ -1,6 +1,7 @@
 #include"k_pke.h"
 #include"k_pke_utils.h"
 #include"ml_kem_512.h"
+#include"utils.h"
 #include"Compact_FIPS202.h"
 #include<stdio.h>
 
@@ -99,7 +100,57 @@ void k_pke_keygen(uint8_t* d, uint8_t* pke_public_key, uint8_t* pke_secret_key){
         NTT(e_cap[i],e[i]);
     }
 
+    // here....
+    uint16_t t[ML_KEM_512_K][256];
 
+    /*
+        A [ 1 2 3 
+            4 5 6
+            7 8 9 ]
+
+     */
+    // for(size_t j=0;j<ML_KEM_512_K;j++){
+    //     for(size_t i=0;i< 256;i++){
+    //         t[j][i] =  
+    //     }
+    // }
+    for (int i = 0; i < ML_KEM_512_K; i++) {
+        for (int j = 0; j < 256; j++) {
+            t[i][j] = 0; // Initialize t[i][j]
+            for (int k = 0; k < ML_KEM_512_K; k++) {
+                t[i][j] += (A[i][k][j] * s[k][j]) % ML_KEM_PRIME_Q; // Element-wise multiplication
+            }
+            t[i][j] = (t[i][j] + e[i][j]) % ML_KEM_PRIME_Q; // Add noise and mod q
+        }
+    }
+    
+
+    uint8_t temp_encoded[32 * 12]; // len of private key  // Temporary array to hold the encoded result for each row
+
+    int pke_offset = 0;  // To keep track of the offset for the pke array
+    
+    for (int k = 0; k < ML_KEM_512_K; k++) {
+        // Run ByteEncode on row F[k]
+        ByteEncode(t[k], temp_encoded, 12); // we have to run with 12 as in standard defination..
+
+        for (int i = 0; i < 32 * 12; i++) {
+            pke_public_key[pke_offset + i] = temp_encoded[i];
+        }
+        pke_offset += 32 * 12;  // Update the offset
+    }
+    for (int i = 0; i < 32; i++) {
+        pke_public_key[pke_offset + i] = row[i];
+    } // added row at the end.
+    pke_offset = 0;
+    for (int k = 0; k < ML_KEM_512_K; k++) {
+        // Run ByteEncode on row F[k]
+        ByteEncode(s_cap[k], temp_encoded, 12); // we have to run with 12 as in standard defination..
+
+        for (int i = 0; i < 32 * 12; i++) {
+            pke_secret_key[pke_offset + i] = temp_encoded[i];
+        }
+        pke_offset += 32 * 12;  // Update the offset
+    }
     return;
     
     // uint8_t e[ML_KEM_512_K];
