@@ -17,6 +17,22 @@ CMakeFiles/ml_kem_512_keygen.dir/external/Compact_FIPS202.c.obj: external/Compac
   C:/wingw64/mingw64/x86_64-w64-mingw32/include/vadefs.h \
   external/Compact_FIPS202.h
 
+CMakeFiles/ml_kem_512_keygen.dir/external/aes.c.obj: external/aes.c \
+  C:/wingw64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stddef.h \
+  C:/wingw64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdint.h \
+  C:/wingw64/mingw64/x86_64-w64-mingw32/include/_mingw.h \
+  C:/wingw64/mingw64/x86_64-w64-mingw32/include/_mingw_mac.h \
+  C:/wingw64/mingw64/x86_64-w64-mingw32/include/_mingw_secapi.h \
+  C:/wingw64/mingw64/x86_64-w64-mingw32/include/corecrt.h \
+  C:/wingw64/mingw64/x86_64-w64-mingw32/include/crtdefs.h \
+  C:/wingw64/mingw64/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
+  C:/wingw64/mingw64/x86_64-w64-mingw32/include/sec_api/string_s.h \
+  C:/wingw64/mingw64/x86_64-w64-mingw32/include/stddef.h \
+  C:/wingw64/mingw64/x86_64-w64-mingw32/include/stdint.h \
+  C:/wingw64/mingw64/x86_64-w64-mingw32/include/string.h \
+  C:/wingw64/mingw64/x86_64-w64-mingw32/include/vadefs.h \
+  external/aes.h
+
 CMakeFiles/ml_kem_512_keygen.dir/internal/PRG/prg.c.obj: internal/PRG/prg.c \
   C:/wingw64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stddef.h \
   C:/wingw64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdint.h \
@@ -57,6 +73,7 @@ CMakeFiles/ml_kem_512_keygen.dir/internal/k_pke/k_pke.c.obj: internal/k_pke/k_pk
   C:/wingw64/mingw64/x86_64-w64-mingw32/include/swprintf.inl \
   C:/wingw64/mingw64/x86_64-w64-mingw32/include/vadefs.h \
   external/Compact_FIPS202.h \
+  external/aes.h \
   internal/utils/ml_kem_utils.h \
   internal/utils/utils.h \
   ml_kem_512.h \
@@ -84,6 +101,7 @@ CMakeFiles/ml_kem_512_keygen.dir/internal/k_pke/k_pke_utils.c.obj: internal/k_pk
   C:/wingw64/mingw64/x86_64-w64-mingw32/include/swprintf.inl \
   C:/wingw64/mingw64/x86_64-w64-mingw32/include/vadefs.h \
   external/Compact_FIPS202.h \
+  external/aes.h \
   internal/utils/ml_kem_utils.h \
   internal/utils/utils.h \
   ml_kem_512.h \
@@ -124,8 +142,10 @@ CMakeFiles/ml_kem_512_keygen.dir/ml_kem_512.c.obj: ml_kem_512.c \
   C:/wingw64/mingw64/x86_64-w64-mingw32/include/swprintf.inl \
   C:/wingw64/mingw64/x86_64-w64-mingw32/include/vadefs.h \
   external/Compact_FIPS202.h \
+  external/aes.h \
   internal/PRG/prg.h \
   internal/k_pke/k_pke.h \
+  internal/k_pke/k_pke_utils.h \
   internal/utils/ml_kem_utils.h \
   ml_kem_512.h
 
@@ -137,6 +157,8 @@ C:/wingw64/mingw64/x86_64-w64-mingw32/include/sec_api/stdio_s.h:
 C:/wingw64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stddef.h:
 
 C:/wingw64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdint.h:
+
+external/aes.c:
 
 C:/wingw64/mingw64/x86_64-w64-mingw32/include/_mingw_secapi.h:
 
@@ -151,6 +173,8 @@ C:/wingw64/mingw64/x86_64-w64-mingw32/include/corecrt.h:
 C:/wingw64/mingw64/x86_64-w64-mingw32/include/crtdefs.h:
 
 C:/wingw64/mingw64/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h:
+
+external/aes.h:
 
 C:/wingw64/mingw64/x86_64-w64-mingw32/include/sec_api/string_s.h:
 

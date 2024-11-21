@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "D:/quantum_secure_comm_protocol/ml-kem512/external/Compact_FIPS202.c" "CMakeFiles/ml_kem_512_keygen.dir/external/Compact_FIPS202.c.obj" "gcc" "CMakeFiles/ml_kem_512_keygen.dir/external/Compact_FIPS202.c.obj.d"
+  "D:/quantum_secure_comm_protocol/ml-kem512/external/aes.c" "CMakeFiles/ml_kem_512_keygen.dir/external/aes.c.obj" "gcc" "CMakeFiles/ml_kem_512_keygen.dir/external/aes.c.obj.d"
   "D:/quantum_secure_comm_protocol/ml-kem512/internal/PRG/prg.c" "CMakeFiles/ml_kem_512_keygen.dir/internal/PRG/prg.c.obj" "gcc" "CMakeFiles/ml_kem_512_keygen.dir/internal/PRG/prg.c.obj.d"
   "D:/quantum_secure_comm_protocol/ml-kem512/internal/k_pke/k_pke.c" "CMakeFiles/ml_kem_512_keygen.dir/internal/k_pke/k_pke.c.obj" "gcc" "CMakeFiles/ml_kem_512_keygen.dir/internal/k_pke/k_pke.c.obj.d"
   "D:/quantum_secure_comm_protocol/ml-kem512/internal/k_pke/k_pke_utils.c" "CMakeFiles/ml_kem_512_keygen.dir/internal/k_pke/k_pke_utils.c.obj" "gcc" "CMakeFiles/ml_kem_512_keygen.dir/internal/k_pke/k_pke_utils.c.obj.d"

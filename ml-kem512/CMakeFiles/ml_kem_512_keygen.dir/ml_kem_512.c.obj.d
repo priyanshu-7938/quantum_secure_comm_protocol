@@ -13,10 +13,12 @@ CMakeFiles/ml_kem_512_keygen.dir/ml_kem_512.c.obj: \
  C:/wingw64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdint.h \
  C:/wingw64/mingw64/x86_64-w64-mingw32/include/stdint.h \
  C:/wingw64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdbool.h \
+ D:/quantum_secure_comm_protocol/ml-kem512/external/aes.h \
  D:/quantum_secure_comm_protocol/ml-kem512/internal/utils/ml_kem_utils.h \
  C:/wingw64/mingw64/x86_64-w64-mingw32/include/string.h \
  C:/wingw64/mingw64/x86_64-w64-mingw32/include/sec_api/string_s.h \
  D:/quantum_secure_comm_protocol/ml-kem512/internal/k_pke/k_pke.h \
+ D:/quantum_secure_comm_protocol/ml-kem512/internal/k_pke/k_pke_utils.h \
  D:/quantum_secure_comm_protocol/ml-kem512/internal/PRG/prg.h \
  C:/wingw64/mingw64/x86_64-w64-mingw32/include/stdio.h \
  C:/wingw64/mingw64/x86_64-w64-mingw32/include/corecrt_stdio_config.h \

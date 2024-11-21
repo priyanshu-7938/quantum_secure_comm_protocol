@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/ml_kem_512_keygen.dir/external/Compact_FIPS202.c.obj"
   "CMakeFiles/ml_kem_512_keygen.dir/external/Compact_FIPS202.c.obj.d"
+  "CMakeFiles/ml_kem_512_keygen.dir/external/aes.c.obj"
+  "CMakeFiles/ml_kem_512_keygen.dir/external/aes.c.obj.d"
   "CMakeFiles/ml_kem_512_keygen.dir/internal/PRG/prg.c.obj"
   "CMakeFiles/ml_kem_512_keygen.dir/internal/PRG/prg.c.obj.d"
   "CMakeFiles/ml_kem_512_keygen.dir/internal/k_pke/k_pke.c.obj"

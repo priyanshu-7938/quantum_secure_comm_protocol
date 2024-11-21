@@ -4,6 +4,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include "aes.h"
 #include"ml_kem_utils.h"
 
 
@@ -40,5 +41,18 @@ int ml_kem_512_encapsulate_internal(uint8_t* m, const uint8_t* pubkey, uint8_t* 
 
 // Decapsulates a cipher text and computes the shared secret.
 void ml_kem_512_decapsulate(const uint8_t* seckey, const uint8_t* cipher, uint8_t* shared_secret);
+
+// structs for the Tripel AES
+struct Tripel_AES_ctx{
+    struct AES_ctx ctx1;
+    struct AES_ctx ctx2;
+    // uses the key bundling part: key1 and key3 are the same, key2 is different. 
+};
+void Tripel_AES_init_ctx(struct Tripel_AES_ctx* ctx, const uint8_t* key1, const uint8_t* key2);
+void Tripel_AES_ECB_encrypt(struct Tripel_AES_ctx* ctx, uint8_t* in);
+void Tripel_AES_ECB_decrypt(struct Tripel_AES_ctx* ctx, uint8_t* in);
+void Decrypt_string(char* str, struct Tripel_AES_ctx ctx);
+void Encrypt_string(char* str, struct Tripel_AES_ctx ctx);
+
 
 #endif // ML_KEM_512_H

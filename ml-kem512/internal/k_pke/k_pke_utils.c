@@ -53,7 +53,7 @@ void NTT(uint16_t* transformed, uint16_t* from){
             zeta = zetas[k++];
             for(size_t j = start;j< start+len;j++){
                 t = (((uint32_t)transformed[j+len] * (uint32_t)zeta) % ML_KEM_PRIME_Q);
-                transformed[j+len] = transformed[j] - t;
+                transformed[j+len] = (transformed[j] - t + ML_KEM_PRIME_Q) % ML_KEM_PRIME_Q;
                 transformed[j] = ((uint32_t)transformed[j] + t)% ML_KEM_PRIME_Q;
             }
         }

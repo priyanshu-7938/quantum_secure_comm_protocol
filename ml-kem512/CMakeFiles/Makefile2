@@ -84,12 +84,12 @@ clean: CMakeFiles/ml_kem_512_keygen.dir/clean
 CMakeFiles/ml_kem_512_keygen.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ml_kem_512_keygen.dir\build.make CMakeFiles/ml_kem_512_keygen.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ml_kem_512_keygen.dir\build.make CMakeFiles/ml_kem_512_keygen.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=D:\quantum_secure_comm_protocol\ml-kem512\CMakeFiles --progress-num=1,2,3,4,5,6,7 "Built target ml_kem_512_keygen"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=D:\quantum_secure_comm_protocol\ml-kem512\CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target ml_kem_512_keygen"
 .PHONY : CMakeFiles/ml_kem_512_keygen.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/ml_kem_512_keygen.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\quantum_secure_comm_protocol\ml-kem512\CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start D:\quantum_secure_comm_protocol\ml-kem512\CMakeFiles 8
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/ml_kem_512_keygen.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start D:\quantum_secure_comm_protocol\ml-kem512\CMakeFiles 0
 .PHONY : CMakeFiles/ml_kem_512_keygen.dir/rule

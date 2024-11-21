@@ -20,6 +20,7 @@ set(SOURCES
     internal/utils/utils.c
     
     external/Compact_FIPS202.c
+    external/aes.c
 )
 
 # Create executable

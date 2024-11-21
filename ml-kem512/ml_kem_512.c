@@ -1,6 +1,8 @@
 #include"ml_kem_512.h"
 #include"k_pke.h"
+#include"k_pke_utils.h"
 #include"prg.h"
+#include "aes.h" // Include the header file for AES_ctx
 // #include"sha3_256.hpp" // for the hash function...
 #include"Compact_FIPS202.h"
 
@@ -102,24 +104,83 @@ void ml_kem_512_keygen_internal(uint8_t* d, uint8_t* z, uint8_t* pubKey, uint8_t
 }
 
 
+// we create some function to call for the encriptions...
+void Tripel_AES_init_ctx(struct Tripel_AES_ctx* ctx, const uint8_t* key1, const uint8_t* key2){
+    AES_init_ctx(&ctx->ctx1, key1);
+    AES_init_ctx(&ctx->ctx2, key2);
+}
+
+void Tripel_AES_ECB_encrypt(struct Tripel_AES_ctx* ctx, uint8_t* in){
+    AES_ECB_encrypt(&ctx->ctx1, in);
+    AES_ECB_decrypt(&ctx->ctx2, in);
+    AES_ECB_encrypt(&ctx->ctx1, in);
+}
+void Tripel_AES_ECB_decrypt(struct Tripel_AES_ctx* ctx, uint8_t* in){
+    AES_ECB_decrypt(&ctx->ctx1, in);
+    AES_ECB_encrypt(&ctx->ctx2, in);
+    AES_ECB_decrypt(&ctx->ctx1, in);
+}
+void Encrypt_string(char* str, struct Tripel_AES_ctx ctx){
+    size_t len = strlen(str);
+    for(size_t i=0;i<len;i+=16){
+        Tripel_AES_ECB_encrypt(&ctx, (uint8_t*)str+i);
+    }
+}
+void Decrypt_string(char* str, struct Tripel_AES_ctx ctx){
+    size_t len = strlen(str);
+    for(size_t i=0;i<len;i+=16){
+        Tripel_AES_ECB_decrypt(&ctx, (uint8_t*)str+i);
+    }
+}
+
+
+
+
+/*remove this later/... */
+void print_array(uint16_t* arr, size_t size) {
+    for (size_t i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
 int main() {
-    uint8_t pubkey[ML_KEM_512_PKEY_BYTE_LEN]; // encapsulating key
-    uint8_t seckey[ML_KEM_512_SKEY_BYTE_LEN]; // decapsulating key
-    ml_kem_512_keygen(pubkey, seckey);
-     printf("Public key (first 16 bytes):\n");
-    for (int i = 0; i < ML_KEM_512_PKEY_BYTE_LEN; i++) {
-        printf("%02X ", pubkey[i]);
-    }
-    printf("\n");
+    // testing the aes...
+    
+    // we will be sharing a secrate with the ml-kem then usiing that encryption scheme to create tripel AES.
 
-    printf("Secret key (first 16 bytes):\n");
-    for (int i = 0; i < ML_KEM_512_SKEY_BYTE_LEN; i++) {
-        printf("%02X ", seckey[i]);
-    }
-    printf("\n");
-    uint8_t shared_secret[ML_KEM_512_SHARED_SECRET_BYTE_LEN];
-    uint8_t cipherText[ML_KEM_512_CIPHER_TEXT_BYTE_LEN];
-    ml_kem_512_encapsulate(pubkey, shared_secret, cipherText);
 
+    uint8_t key1[] = { 0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c };
+    uint8_t key2[] = { 0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x31 };
+    // uint8_t check_on[]  = { 0x6b, 0xc1, 0xbe, 0xe2, 0x2e, 0x40, 0x9f, 0x96, 0xe9, 0x3d, 0x7e, 0x11, 0x73, 0x93, 0x17, 0x2a };
+    // uint8_t in[]  = { 0x6b, 0xc1, 0xbe, 0xe2, 0x2e, 0x40, 0x9f, 0x96, 0xe9, 0x3d, 0x7e, 0x11, 0x73, 0x93, 0x17, 0x2a };
+    struct Tripel_AES_ctx ctx_tripel;
+    Tripel_AES_init_ctx(&ctx_tripel, key1, key2);
+    char input_str[256]; 
+    printf("Enter a string: ");
+    scanf("%255s", input_str);  
+    Encrypt_string(input_str, ctx_tripel);
+    printf("the encrypted string is: %s\n", input_str);
+    Decrypt_string(input_str, ctx_tripel);
+    printf("the decrypted string is: %s\n", input_str);
+
+
+    // uint8_t pubkey[ML_KEM_512_PKEY_BYTE_LEN]; // encapsulating key
+    // uint8_t seckey[ML_KEM_512_SKEY_BYTE_LEN]; // decapsulating key
+    // ml_kem_512_keygen(pubkey, seckey);
+    //  printf("Public key (first 16 bytes):\n");
+    // for (int i = 0; i < ML_KEM_512_PKEY_BYTE_LEN; i++) {
+    //     printf("%02X ", pubkey[i]);
+    // }
+    // printf("\n");
+
+    // printf("Secret key (first 16 bytes):\n");
+    // for (int i = 0; i < ML_KEM_512_SKEY_BYTE_LEN; i++) {
+    //     printf("%02X ", seckey[i]);
+    // }
+    // printf("\n");
+    // uint8_t shared_secret[ML_KEM_512_SHARED_SECRET_BYTE_LEN];
+    // uint8_t cipherText[ML_KEM_512_CIPHER_TEXT_BYTE_LEN];
+    // ml_kem_512_encapsulate(pubkey, shared_secret, cipherText);
     return 0;
 }

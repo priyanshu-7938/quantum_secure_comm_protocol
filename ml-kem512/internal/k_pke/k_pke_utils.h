@@ -31,4 +31,5 @@ void PRF(uint8_t* s,uint8_t length_of_s, uint8_t* single_byte_b, uint8_t* output
 void SamplePolyCBD(uint16_t* output, uint8_t* B,size_t len_of_B, uint8_t eta);
 
 void NTT(uint16_t* transformed, uint16_t* from);
+void NTT_inv(uint16_t* transformed, uint16_t* from);
 #endif // K_PKE_UTILS_H

@@ -152,6 +152,30 @@ external/Compact_FIPS202.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ml_kem_512_keygen.dir\build.make CMakeFiles/ml_kem_512_keygen.dir/external/Compact_FIPS202.c.s
 .PHONY : external/Compact_FIPS202.c.s
 
+external/aes.obj: external/aes.c.obj
+.PHONY : external/aes.obj
+
+# target to build an object file
+external/aes.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ml_kem_512_keygen.dir\build.make CMakeFiles/ml_kem_512_keygen.dir/external/aes.c.obj
+.PHONY : external/aes.c.obj
+
+external/aes.i: external/aes.c.i
+.PHONY : external/aes.i
+
+# target to preprocess a source file
+external/aes.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ml_kem_512_keygen.dir\build.make CMakeFiles/ml_kem_512_keygen.dir/external/aes.c.i
+.PHONY : external/aes.c.i
+
+external/aes.s: external/aes.c.s
+.PHONY : external/aes.s
+
+# target to generate assembly for a file
+external/aes.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ml_kem_512_keygen.dir\build.make CMakeFiles/ml_kem_512_keygen.dir/external/aes.c.s
+.PHONY : external/aes.c.s
+
 internal/PRG/prg.obj: internal/PRG/prg.c.obj
 .PHONY : internal/PRG/prg.obj
 
@@ -284,6 +308,9 @@ help:
 	@echo ... external/Compact_FIPS202.obj
 	@echo ... external/Compact_FIPS202.i
 	@echo ... external/Compact_FIPS202.s
+	@echo ... external/aes.obj
+	@echo ... external/aes.i
+	@echo ... external/aes.s
 	@echo ... internal/PRG/prg.obj
 	@echo ... internal/PRG/prg.i
 	@echo ... internal/PRG/prg.s

@@ -18,6 +18,7 @@ CMakeFiles/ml_kem_512_keygen.dir/internal/k_pke/k_pke.c.obj: \
  D:\quantum_secure_comm_protocol\ml-kem512\internal\k_pke\k_pke_utils.h \
  D:/quantum_secure_comm_protocol/ml-kem512/ml_kem_512.h \
  C:/wingw64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdbool.h \
+ D:/quantum_secure_comm_protocol/ml-kem512/external/aes.h \
  D:/quantum_secure_comm_protocol/ml-kem512/internal/utils/utils.h \
  D:/quantum_secure_comm_protocol/ml-kem512/external/Compact_FIPS202.h \
  C:/wingw64/mingw64/x86_64-w64-mingw32/include/stdio.h \

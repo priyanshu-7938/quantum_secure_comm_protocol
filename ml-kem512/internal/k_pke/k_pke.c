@@ -165,3 +165,85 @@ void k_pke_keygen(uint8_t* d, uint8_t* pke_public_key, uint8_t* pke_secret_key){
     // // dkPKE = ByteEncoding(T_cap) // private part
 
 }
+
+void k_pke_encrypt(const uint8_t* pubkey, uint8_t* m, uint8_t* r,uint8_t* cipher){
+// pubkey = long
+// m = 32
+// r = 32
+// cipher = similar long...
+
+    uint8_t N = 0;
+    uint16_t t_cap[ML_KEM_512_K][256];
+    uint8_t row[32]; // bytes seed man...
+    int pke_offset = 0;   
+    for (int k = 0; k < ML_KEM_512_K; k++) {
+        uint8_t temp_encoded[32 * 12]; 
+        for (int i = 0; i < 32 * 12; i++) {
+            temp_encoded[i] = pubkey[pke_offset + i];
+        }
+        ByteDecode(temp_encoded, t_cap[k], 12);
+        pke_offset += 32 * 12;
+    }    
+    for (int i = 0; i < 32; i++) {
+        row[i] = pubkey[pke_offset + i];
+    }
+    uint16_t A[ML_KEM_512_K][ML_KEM_512_K][256];
+    uint8_t B_34[34]={0}; // b_34 = row || j || i
+    for(size_t i=0;i<32;i++)B_34[i] = row[i];
+    for(size_t i = 0;i< ML_KEM_512_K;i++){
+        for(size_t j=0;j<ML_KEM_512_K;j++){
+            B_34[32] = j;
+            B_34[33] = i;
+            SampleNTT(B_34,A[i][j]);
+        }
+    }
+    uint16_t y[ML_KEM_512_K][256]; // k polynomials in z_256 with modulo q
+    for(size_t i=0; i<ML_KEM_512_K; i++){
+        //void PRF(uint8_t* s,uint8_t length_of_s, uint8_t* single_byte_b, uint8_t* output,uint8_t* length_of_output, uint8_t eta)
+        size_t len_of_prfOutput = 64*2;
+        uint8_t prfOutput_64n[len_of_prfOutput]; // eta is 2 here.
+        PRF(r, 32, &N, prfOutput_64n, len_of_prfOutput, 1);
+        SamplePolyCBD(y[i],prfOutput_64n, len_of_prfOutput, 1);//output in the s[i], eta is 1 again..
+        N++;
+    }
+    uint16_t e_1[ML_KEM_512_K][256]; // k polynomials in z_256 with modulo q
+    for(size_t i=0; i<ML_KEM_512_K; i++){
+        //void PRF(uint8_t* s,uint8_t length_of_s, uint8_t* single_byte_b, uint8_t* output,uint8_t* length_of_output, uint8_t eta)
+        size_t len_of_prfOutput = 64*2;
+        uint8_t prfOutput_64n[len_of_prfOutput]; // eta is 2 here.
+        PRF(r, 32, &N, prfOutput_64n, len_of_prfOutput, 2);
+        SamplePolyCBD(e_1[i],prfOutput_64n, len_of_prfOutput, 2);//output in the s[i], eta is 1 again..
+        N++;
+    }
+    uint16_t e_2[256];
+    size_t len_of_prfOutput = 64*2;
+    uint8_t prfOutput_64n[len_of_prfOutput]; 
+    SamplePolyCBD(e_2,prfOutput_64n, len_of_prfOutput, 2);
+    uint16_t y_cap[ML_KEM_512_K][256];
+    for(size_t i=0; i<ML_KEM_512_K;i++){
+        NTT(y_cap[i],y[i]);
+    }
+    // finding u
+    uint16_t u[ML_KEM_512_K][256];
+    // defining Atranspose dot y_cap
+    // a is of type uint16_t A[ML_KEM_512_K][ML_KEM_512_K][256];
+    // and y_cap is of type uint16_t y_cap[ML_KEM_512_K][256];
+    // so we have to find the dot product of these two.
+    // like run a top level loop for k times in each find the respective dot product and save in the u_cap
+    for (size_t k = 0; k < ML_KEM_512_K; k++) {
+       uint16_t temp_dot[256] = {0};  // Temporary array to store the dot product result for each k
+    
+    // Compute the dot product for the k-th row
+        for (size_t i = 0; i < ML_KEM_512_K; i++) {
+            for (size_t j = 0; j < 256; j++) {
+                temp_dot[j] += A[k][j][i] * y_cap[i][j];  // Accumulate the dot product
+            }
+        }
+        // After computing the dot product, apply NTT_inverse to the result
+        NTT_inv(u[k], temp_dot);
+    }
+
+
+
+
+}

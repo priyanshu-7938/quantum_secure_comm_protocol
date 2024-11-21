@@ -8,7 +8,7 @@
 void BitsToBytes(uint8_t* bits, uint8_t* bytes, size_t bit_length);
 
 // Algorithm 4: BytesToBits
-void BytesToBits(const uint8_t* bytes, uint8_t* bits, size_t byteLength);
+void BytesToBits(uint8_t* bytes, uint8_t* bits, size_t byteLength);
 
 // Function to encode bytes (ByteEncode)
 void ByteEncode(uint16_t* F, uint8_t* B, int d);
